@@ -36,7 +36,7 @@ public class Sentence {
      */
     public void replaceNthTime(String str, int n, String repl) {
         int x = findNthTime(str,n);
-        int z=currSent.length();
+        int z=str.length();
         if(x!=-1){
             currSent=currSent.substring(0,x) + repl + currSent.substring(x+z);
         }
@@ -49,7 +49,14 @@ public class Sentence {
      */
     public int findLastTime(String str) {
         /* part c - you must call findNthTime here */
-        return -1;  // replace this
+        int a=-1;
+        for (int i = 0; i < currSent.length(); i++) {
+            if(findNthTime(str,i)!=-1){
+                a = findNthTime(str, i);
+            }
+        }
+        return a;
+        // replace this
     }
 
     public static void main(String[] args) {
