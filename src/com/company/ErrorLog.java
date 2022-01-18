@@ -8,7 +8,7 @@ public class ErrorLog {
         /** Precondition: message is a valid Error log entry */
         public ErrorLog(String message) {
             machineId=message.substring(0,message.indexOf(":"));
-            description=message.substring(0,message.indexOf(":")+1);
+            description=message.substring(message.indexOf(":")+1);
         }
 
         /** Returns true if the description in this error log entry
@@ -16,8 +16,23 @@ public class ErrorLog {
          * Postcondition: the description is unchanged
          */
         public boolean containsKey(String keyword) {
-
-            return false;   // replace this
+            int x = description.indexOf(keyword);
+            int y = keyword.length();
+            int z = description.length();
+            if (x==-1) {
+                return false;
+            }
+            if(x!=0) {
+                if (description.charAt(x - 1) != ' ') {
+                    return false;
+                }
+                if (x + y != z) {
+                    if (description.charAt(x + y) != ' ') {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         public String getMachineId() { return machineId;}
@@ -45,4 +60,11 @@ public class ErrorLog {
         }
 
     }
-}
+//        message 1 false
+//        message 2 true
+//        message 3 false
+//        message 4 true
+//        message 5 true
+//        message 6 false
+//        message 6 true
+//        message 7 true
